@@ -35,5 +35,6 @@ module.exports = {
         else if (document.lastChild == document.body) {
             callback();
         }
-    }
+    },
+    Cookies: require('js-cookie')
 };

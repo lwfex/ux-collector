@@ -59,12 +59,14 @@ var data = {
     "collector":"deviceInfo",
     //浏览器版本：通过请求头的User-Agent获取
     // "userAgent":""
-    //分辨率的宽
-    "width":1920,
-    //分辨率的高
-    "height":1080,
-    //色深
-    "pixelDepth":24
+    //分辨率宽度
+    "width": 1920,
+    //分辨率高度
+    "height": 1080,
+    //可用宽度
+    "availWidth": 1920,
+    //可用高度
+    "availHeight": 1040
 }
 ```
 

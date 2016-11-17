@@ -81,4 +81,8 @@ function _send(collector, data) {
 /*----- 注册收集器 ----*/
 //页面追踪
 require('./collectors/page_tracing')(UXCollector);
+//页面错误
+require('./collectors/page_error')(UXCollector);
+//设备信息
+require('./collectors/device_info')(UXCollector);
 module.exports = UXCollector;

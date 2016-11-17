@@ -3,7 +3,8 @@
  * Created by laiyq@txtws.com on 2016/11/17.
  */
 module.exports = function (UXCollector) {
-    UXCollector.addCollector("pageTracing", function (send) {
+    var collector = "pageTracing";
+    UXCollector.addCollector(collector, function (send) {
         UXCollector.utils.documentReady(function () {
             setTimeout(function () {
                 collect(send);
@@ -19,7 +20,7 @@ module.exports = function (UXCollector) {
 
         var data = {
             //收集器名称
-            "collector": "pageTracing",
+            "collector": collector,
             //当前页面地址：通过请求的referrer获取
             // "url":"",
             //页面来源地址

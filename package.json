@@ -19,5 +19,8 @@
     "raw-loader": "^0.5.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "js-cookie": "^2.1.3"
   }
 }
