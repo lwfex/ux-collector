@@ -1,0 +1,23 @@
+{
+  "name": "ux-collector",
+  "version": "1.0.0",
+  "description": "用户体验信息收集, 用户行为跟踪, User Experience, User Behaviors Tracking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lwfex/ux-collector.git"
+  },
+  "author": "max",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "raw-loader": "^0.5.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1"
+  }
+}
