@@ -18,11 +18,11 @@
 var data = {
     //收集器名称
     "collector":"pageTracing",
-    //当前页面地址
-    "url":"http://example.com/exmple-uri.html",
+    //当前页面地址：通过请求的referrer获取
+    // "url":"",
     //页面来源地址
     "referrer":"http://example.com/exmple-uri-1.html",
-    //页面加载时间,单位毫秒
+    //页面加载时间,单位毫秒,0表示无法计算页面加载时间
     "pageLoadTime":200
     //用户标识，若需要请在beforeSend中添加，规范命名：userId
 }
