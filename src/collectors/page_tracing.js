@@ -15,7 +15,7 @@ module.exports = function (UXCollector) {
         //页面加载时间
         var pageLoadTime = 0;
         if (performance && performance.timing) {
-            pageLoadTime = performance.timing.domainLookupStart - performance.timing.domLoading;
+            pageLoadTime = performance.timing.domLoading - performance.timing.domainLookupStart;
         }
 
         var data = {
