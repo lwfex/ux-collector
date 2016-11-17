@@ -1,207 +1,23 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
-/******/ 			return installedModules[moduleId].exports;
-/******/
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(0);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/*!******************!*\
+!function(e){function n(o){if(t[o])return t[o].exports;var r=t[o]={exports:{},id:o,loaded:!1};return e[o].call(r.exports,r,r.exports,n),r.loaded=!0,r.exports}var t={};return n.m=e,n.c=t,n.p="",n(0)}([/*!******************!*\
   !*** ./index.js ***!
   \******************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by laiyq@txtws.com on 2016/11/3.
-	 */
-	var UXCollector = __webpack_require__(/*! ./src/main */ 1);
-	window.UXCollector = UXCollector;
-	module.exports = UXCollector;
-
-/***/ },
-/* 1 */
-/*!*********************!*\
+function(e,n,t){var o=t(/*! ./src/main */1);window.UXCollector=o,e.exports=o},/*!*********************!*\
   !*** ./src/main.js ***!
   \*********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by laiyq@txtws.com on 2016/11/17.
-	 */
-	var UXCollector = {};
-	//所有收集器
-	var _collectorsHub = {};
-	//所有收集器名称
-	var _collectorsAll = [];
-	
-	//服务地址
-	var _server = null;
-	//启用哪些收集器
-	var _collectors = [];
-	//发送前调用
-	var _beforeSend = null;
-	
-	/**
-	 * 工具集
-	 */
-	UXCollector.utils = __webpack_require__(/*! ./utils */ 3);
-	
-	/**
-	 * 配置
-	 * @param config
-	 * @returns {UXCollector}
-	 */
-	UXCollector.setConfig = function (config) {
-	    _server = config['server'];
-	    _collectors = config['collectors'] || [];
-	    _beforeSend = config['beforeSend'] || null;
-	    return this;
-	};
-	
-	/**
-	 * 收集器启动
-	 */
-	UXCollector.start = function () {
-	    if (!_collectors.length) {
-	        _collectors = _collectorsAll;
-	    }
-	    //执行收集器
-	    for (var i = 0; i < _collectors.length; i++) {
-	        var collector = _collectors[i];
-	        if (_collectorsHub[collector] instanceof Function) {
-	            _collectorsHub[collector](function (data) {
-	                _send(collector, data);
-	            })
-	        }
-	    }
-	};
-	
-	/**
-	 * 收集器
-	 * @param name
-	 * @param collectorFn
-	 */
-	UXCollector.addCollector = function (name, collectorFn) {
-	    if (!_collectorsHub[name]) {
-	        _collectorsAll.push(name);
-	    }
-	    _collectorsHub[name] = collectorFn;
-	};
-	
-	/**
-	 * 发送器
-	 * @param collector
-	 * @param data
-	 * @private
-	 */
-	function _send(collector, data) {
-	    //发送拦截
-	    if (_beforeSend instanceof Function) {
-	        if (_beforeSend(collector, data) === false) {
-	            return;
-	        }
-	    }
-	    //发送
-	    (new Image()).src = UXCollector.utils.getUrl(_server, data);
-	}
-	
-	/*----- 注册收集器 ----*/
-	//页面追踪
-	__webpack_require__(/*! ./collectors/page_tracing */ 2)(UXCollector);
-	module.exports = UXCollector;
-
-
-/***/ },
-/* 2 */
-/*!****************************************!*\
-  !*** ./src/collectors/page_tracing.js ***!
-  \****************************************/
-/***/ function(module, exports) {
-
-	/**
-	 * Created by laiyq@txtws.com on 2016/11/17.
-	 */
-	module.exports = function (UXCollector) {
-	    UXCollector.addCollector("pageTracing", function (send) {
-	        window.onload=function () {
-	            
-	        }
-	        var data = {
-	            //收集器名称
-	            "collector":"pageTracing",
-	            //当前页面地址：通过请求的referrer获取
-	            // "url":"",
-	            //页面来源地址
-	            "referrer":"http://example.com/exmple-uri-1.html",
-	            //页面加载时间,单位毫秒
-	            "pageLoadTime":200
-	            //用户标识，若需要请在beforeSend中添加，规范命名：userId
-	        };
-	        send(data);
-	    })
-	};
-
-/***/ },
-/* 3 */
-/*!**********************!*\
+function(e,n,t){function o(e,n){d instanceof Function&&d(e,n)===!1||((new Image).src=r.utils.getUrl(a,n))}var r={},i={},c=[],a=null,u=[],d=null;r.utils=t(/*! ./utils */2),r.setConfig=function(e){return a=e.server,u=e.collectors||[],d=e.beforeSend||null,this},r.start=function(){u.length||(u=c);for(var e=0;e<u.length;e++){var n=u[e];i[n]instanceof Function&&i[n](function(e){o(n,e)})}},r.addCollector=function(e,n){i[e]||c.push(e),i[e]=n},t(/*! ./collectors/page_tracing */4)(r),t(/*! ./collectors/page_error */5)(r),t(/*! ./collectors/device_info */6)(r),e.exports=r},/*!**********************!*\
   !*** ./src/utils.js ***!
   \**********************/
-/***/ function(module, exports) {
-
-	/**
-	 * Created by laiyq@txtws.com on 2016/11/17.
-	 */
-	module.exports = {
-	    //获取完整的url
-	    getUrl: function (url, data) {
-	        data = data || {};
-	        var p = '';
-	        for (var i in data) {
-	            p += i + "=" + encodeURIComponent(data[i]) + "&";
-	        }
-	        if (p.length > 0) {
-	            p = (url.indexOf('?') > 0 ? "&" : "?") + p.substr(0, p.length - 1);
-	        }
-	        return url + p;
-	    }
-	};
-
-/***/ }
-/******/ ]);
+function(e,n,t){e.exports={getUrl:function(e,n){n=n||{};var t="";for(var o in n)t+=o+"="+encodeURIComponent(n[o])+"&";return t.length>0&&(t=(e.indexOf("?")>0?"&":"?")+t.substr(0,t.length-1)),e+t},documentReady:function(e){document.addEventListener?document.addEventListener("DOMContentLoaded",function(){document.removeEventListener("DOMContentLoaded",arguments.callee,!1),e()},!1):document.attachEvent?document.attachEvent("onreadytstatechange",function(){"complete"==document.readyState&&(document.detachEvent("onreadystatechange",arguments.callee),e())}):document.lastChild==document.body&&e()},Cookies:t(/*! js-cookie */3)}},/*!**************************************!*\
+  !*** ./~/js-cookie/src/js.cookie.js ***!
+  \**************************************/
+function(e,n,t){var o,r;!function(i){var c=!1;if(o=i,r="function"==typeof o?o.call(n,t,n,e):o,!(void 0!==r&&(e.exports=r)),c=!0,e.exports=i(),c=!0,!c){var a=window.Cookies,u=window.Cookies=i();u.noConflict=function(){return window.Cookies=a,u}}}(function(){function e(){for(var e=0,n={};e<arguments.length;e++){var t=arguments[e];for(var o in t)n[o]=t[o]}return n}function n(t){function o(n,r,i){var c;if("undefined"!=typeof document){if(arguments.length>1){if(i=e({path:"/"},o.defaults,i),"number"==typeof i.expires){var a=new Date;a.setMilliseconds(a.getMilliseconds()+864e5*i.expires),i.expires=a}try{c=JSON.stringify(r),/^[\{\[]/.test(c)&&(r=c)}catch(e){}return r=t.write?t.write(r,n):encodeURIComponent(String(r)).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),n=encodeURIComponent(String(n)),n=n.replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent),n=n.replace(/[\(\)]/g,escape),document.cookie=[n,"=",r,i.expires?"; expires="+i.expires.toUTCString():"",i.path?"; path="+i.path:"",i.domain?"; domain="+i.domain:"",i.secure?"; secure":""].join("")}n||(c={});for(var u=document.cookie?document.cookie.split("; "):[],d=/(%[0-9A-Z]{2})+/g,l=0;l<u.length;l++){var s=u[l].split("="),f=s.slice(1).join("=");'"'===f.charAt(0)&&(f=f.slice(1,-1));try{var p=s[0].replace(d,decodeURIComponent);if(f=t.read?t.read(f,p):t(f,p)||f.replace(d,decodeURIComponent),this.json)try{f=JSON.parse(f)}catch(e){}if(n===p){c=f;break}n||(c[p]=f)}catch(e){}}return c}}return o.set=o,o.get=function(e){return o.call(o,e)},o.getJSON=function(){return o.apply({json:!0},[].slice.call(arguments))},o.defaults={},o.remove=function(n,t){o(n,"",e(t,{expires:-1}))},o.withConverter=n,o}return n(function(){})})},/*!****************************************!*\
+  !*** ./src/collectors/page_tracing.js ***!
+  \****************************************/
+function(e,n){e.exports=function(e){function n(e){var n=0;performance&&performance.timing&&(n=performance.timing.domLoading-performance.timing.domainLookupStart);var o={collector:t,referrer:document.referrer,pageLoadTime:n};e(o)}var t="pageTracing";e.addCollector(t,function(t){e.utils.documentReady(function(){setTimeout(function(){n(t)},300)})})}},/*!**************************************!*\
+  !*** ./src/collectors/page_error.js ***!
+  \**************************************/
+function(e,n){e.exports=function(e){var n="pageError";e.addCollector(n,function(e){var t=window.onerror;window.onerror=function(){var o={collector:n,message:arguments[0],errorUrl:arguments[1],errorLine:arguments[2],errorColumn:arguments[3]||0};e(o),t instanceof Function&&t.apply(this,arguments)}})}},/*!***************************************!*\
+  !*** ./src/collectors/device_info.js ***!
+  \***************************************/
+function(e,n){e.exports=function(e){function n(e){var n=window.screen,o={collector:t,width:n.width,height:n.height,availWidth:n.availWidth,availHeight:n.availHeight};e(o)}var t="deviceInfo",o="uxcDeviceInfo";e.addCollector(t,function(t){e.utils.documentReady(function(){e.utils.Cookies.get(o)||setTimeout(function(){n(t),e.utils.Cookies.set(o,1,{expires:365})},300)})})}}]);
 //# sourceMappingURL=ux-collector.js.map
