@@ -18,7 +18,7 @@
 var data = {
     //收集器名称
     "collector":"pageTracing",
-    //当前页面地址：通过请求的referrer获取
+    //当前页面地址：通过请求头的Referer获取
     // "url":"",
     //页面来源地址
     "referrer":"http://example.com/exmple-uri-1.html",
@@ -35,12 +35,10 @@ var data = {
 var data = {
     //收集器名称
     "collector":"pageError",
-    //当前页面地址
-    "url":"http://example.com/exmple-uri.html",
-    //浏览器
-    "browser":"chrome",
-    //浏览器版本
-    "browserVersion":"54.0.14.123",
+    //当前页面地址：通过请求头的Referer获取
+    // "url":"",
+    //浏览器版本：通过请求头的User-Agent获取
+    // "userAgent":""
     //错误信息
     "message":"error-message",
     //错误文件
@@ -59,12 +57,8 @@ var data = {
 var data = {
     //收集器名称
     "collector":"deviceInfo",
-    //操作系统
-    "OS":"Windows NT 10.0",
-    //浏览器
-    "browser":"chrome",
-    //浏览器版本
-    "browserVersion":"54.0.14.123",
+    //浏览器版本：通过请求头的User-Agent获取
+    // "userAgent":""
     //分辨率的宽
     "width":1920,
     //分辨率的高
