@@ -69,6 +69,7 @@ var data = {
     "availHeight": 1040
 }
 ```
+注：IP,userAgent,访问地址，访问时间 请在服务端获取。
 
 ### 用法
 
