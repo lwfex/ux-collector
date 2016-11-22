@@ -41,11 +41,13 @@ UXCollector.start = function () {
     //执行收集器
     for (var i = 0; i < _collectors.length; i++) {
         var collector = _collectors[i];
-        if (_collectorsHub[collector] instanceof Function) {
-            _collectorsHub[collector](function (data) {
-                _send(collector, data);
-            })
-        }
+        (function (collector) {
+            if (_collectorsHub[collector] instanceof Function) {
+                _collectorsHub[collector](function (data) {
+                    _send(collector, data);
+                })
+            }
+        })(collector);
     }
 };
 
